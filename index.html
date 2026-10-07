@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daniel e a Floresta Mágica</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div id="game">
+
+    <!-- INTRODUÇÃO -->
+    <div id="introScreen">
+
+      <div class="intro-box">
+
+        <div class="stars">✦ ✧ ✦</div>
+
+        <h1>🌳 DANIEL E A FLORESTA MÁGICA 🌳</h1>
+
+        <div class="poem">
+
+          <p>
+            Numa floresta de brilho e luar,<br>
+            Daniel chegou pronto para lutar.
+          </p>
+
+          <p>
+            Com um risco no olho e coragem no coração,<br>
+            ele enfrenta monstros sem medo ou hesitação.
+          </p>
+
+          <p>
+            Seu amigo ao lado nunca vai abandonar,<br>
+            juntos pela mata eles vão caminhar.
+          </p>
+
+          <p>
+            Mas há um poder difícil de controlar:<br>
+            um enorme <strong>BURACO NEGRO</strong> capaz de tudo puxar!
+          </p>
+
+          <p>
+            Se a floresta precisar de um grande herói,<br>
+            Daniel aparece — e o perigo ele destrói!
+          </p>
+
+        </div>
+
+        <button id="startButton">
+          ⚔️ COMEÇAR A AVENTURA
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- JOGO -->
+    <div id="gameContainer">
+
+      <div class="topHud">
+
+        <div class="playerHud">
+
+          <div class="name">
+            DANIEL
+          </div>
+
+          <div class="bar">
+            <div id="playerHealth"></div>
+          </div>
+
+          <div id="healthText">
+            100 / 100
+          </div>
+
+        </div>
+
+
+        <div class="enemyHud">
+
+          <div id="enemyName">
+            ---
+          </div>
+
+          <div class="bar enemyBar">
+            <div id="enemyHealth"></div>
+          </div>
+
+          <div id="enemyHealthText">
+            0 / 0
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="battleInfo">
+
+        <span id="roundText">
+          INIMIGO 1
+        </span>
+
+        <span id="message">
+          A floresta está silenciosa...
+        </span>
+
+      </div>
+
+
+      <canvas
+        id="gameCanvas"
+        width="960"
+        height="540">
+      </canvas>
+
+
+      <div class="controls">
+
+        <div class="movement">
+
+          <button data-key="w">▲</button>
+
+          <div>
+            <button data-key="a">◀</button>
+            <button data-key="s">▼</button>
+            <button data-key="d">▶</button>
+          </div>
+
+        </div>
+
+
+        <div class="actions">
+
+          <button id="attackButton">
+            👊 ATAQUE
+          </button>
+
+          <button id="specialButton">
+            🕳️ BURACO NEGRO
+          </button>
+
+          <button id="fullscreenButton">
+            ⛶ TELA CHEIA
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="instructions">
+        WASD = mover &nbsp; | &nbsp;
+        ESPAÇO = atacar &nbsp; | &nbsp;
+        Q = Buraco Negro
+      </div>
+
+    </div>
+
+
+    <!-- GAME OVER -->
+    <div id="endScreen">
+
+      <div class="endBox">
+
+        <div id="endIcon">
+          💀
+        </div>
+
+        <h2 id="endTitle">
+          FIM DA AVENTURA
+        </h2>
+
+        <p id="endMessage">
+          Daniel precisa tentar novamente!
+        </p>
+
+        <button id="restartButton">
+          🔄 JOGAR NOVAMENTE
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="game.js"></script>
+
+</body>
+</html>
