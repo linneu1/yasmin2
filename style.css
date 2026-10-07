@@ -1,0 +1,426 @@
+* {
+  box-sizing: border-box;
+  image-rendering: pixelated;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at center, #203d29, #08130c);
+  color: white;
+  font-family: "Courier New", monospace;
+  overflow: hidden;
+}
+
+button {
+  font-family: "Courier New", monospace;
+  cursor: pointer;
+  user-select: none;
+}
+
+#game {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+
+/* =========================
+   INTRO
+========================= */
+
+#introScreen {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    linear-gradient(
+      rgba(4, 15, 8, .75),
+      rgba(2, 8, 5, .92)
+    );
+}
+
+.intro-box {
+  width: min(760px, 92vw);
+  padding: 35px;
+
+  text-align: center;
+
+  background:
+    #13251a;
+
+  border:
+    5px solid #74562f;
+
+  box-shadow:
+    0 0 0 5px #1d3824,
+    0 15px 50px #000;
+
+  border-radius: 8px;
+}
+
+.stars {
+  color: #f5d878;
+  font-size: 25px;
+  margin-bottom: 5px;
+}
+
+.intro-box h1 {
+  color: #e6c86a;
+  font-size: clamp(22px, 4vw, 38px);
+  margin: 8px 0 25px;
+
+  text-shadow:
+    4px 4px #392719;
+}
+
+.poem {
+  color: #e9e4ca;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.poem strong {
+  color: #b788e8;
+  text-shadow: 0 0 8px #8e45d1;
+}
+
+#startButton,
+#restartButton {
+  margin-top: 22px;
+
+  padding: 15px 25px;
+
+  color: #fff5cf;
+  background: #76532c;
+
+  border: 3px solid #c39b58;
+  border-radius: 5px;
+
+  font-weight: bold;
+  font-size: 16px;
+
+  box-shadow:
+    0 5px #352518;
+}
+
+#startButton:hover,
+#restartButton:hover {
+  background: #96703e;
+  transform: translateY(-2px);
+}
+
+#startButton:active,
+#restartButton:active {
+  transform: translateY(4px);
+  box-shadow: none;
+}
+
+
+/* =========================
+   JOGO
+========================= */
+
+#gameContainer {
+  display: none;
+
+  width: min(1100px, 100vw);
+  height: 100vh;
+
+  margin: auto;
+
+  position: relative;
+
+  background: #0d1b11;
+}
+
+
+/* =========================
+   HUD
+========================= */
+
+.topHud {
+  height: 78px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 10px 20px;
+
+  background:
+    #15291b;
+
+  border-bottom:
+    4px solid #4e3c25;
+}
+
+.playerHud,
+.enemyHud {
+  width: 35%;
+}
+
+.playerHud {
+  text-align: left;
+}
+
+.enemyHud {
+  text-align: right;
+}
+
+.name,
+#enemyName {
+  font-weight: bold;
+  color: #f0d47a;
+  margin-bottom: 5px;
+}
+
+.bar {
+  height: 17px;
+  background: #331a1a;
+  border: 3px solid #17100e;
+}
+
+#playerHealth {
+  width: 100%;
+  height: 100%;
+  background: #46c35b;
+  transition: width .2s;
+}
+
+#enemyHealth {
+  width: 100%;
+  height: 100%;
+  background: #d64a43;
+  transition: width .2s;
+}
+
+#healthText,
+#enemyHealthText {
+  font-size: 11px;
+  margin-top: 3px;
+  color: #d6d1b8;
+}
+
+.battleInfo {
+  height: 36px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0 20px;
+
+  background: #0b170d;
+
+  color: #ddd6b9;
+
+  font-size: 12px;
+}
+
+#roundText {
+  color: #f0cf65;
+  font-weight: bold;
+}
+
+
+/* =========================
+   CANVAS
+========================= */
+
+#gameCanvas {
+  display: block;
+
+  width: 100%;
+  height: auto;
+
+  max-height: calc(100vh - 185px);
+
+  background: #173b21;
+
+  image-rendering: pixelated;
+}
+
+
+/* =========================
+   CONTROLES
+========================= */
+
+.controls {
+  height: 105px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 10px 20px;
+
+  background: #101d13;
+}
+
+.movement {
+  text-align: center;
+}
+
+.movement button {
+  width: 42px;
+  height: 35px;
+
+  margin: 2px;
+
+  color: white;
+  background: #3c5138;
+
+  border: 2px solid #71845f;
+  border-radius: 4px;
+}
+
+.movement button:active {
+  background: #718b55;
+}
+
+
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.actions button {
+  padding: 12px;
+
+  color: white;
+  background: #3c5138;
+
+  border: 2px solid #75875d;
+  border-radius: 4px;
+
+  font-weight: bold;
+}
+
+.actions button:hover {
+  background: #5c714b;
+}
+
+#specialButton {
+  color: #eee0ff;
+  background: #39254d;
+  border-color: #a96ed5;
+  box-shadow: 0 0 10px rgba(155, 81, 210, .25);
+}
+
+#specialButton.ready {
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  50% {
+    box-shadow:
+      0 0 20px #a957dc;
+  }
+}
+
+.instructions {
+  text-align: center;
+
+  height: 25px;
+
+  font-size: 10px;
+
+  color: #8e967f;
+}
+
+
+/* =========================
+   FIM
+========================= */
+
+#endScreen {
+  display: none;
+
+  position: fixed;
+  inset: 0;
+
+  z-index: 30;
+
+  align-items: center;
+  justify-content: center;
+
+  background:
+    rgba(0, 0, 0, .78);
+}
+
+.endBox {
+  width: min(500px, 90vw);
+
+  text-align: center;
+
+  padding: 40px;
+
+  background: #17281b;
+
+  border: 5px solid #6b512d;
+
+  box-shadow:
+    0 0 40px #000;
+}
+
+#endIcon {
+  font-size: 60px;
+}
+
+#endTitle {
+  color: #f0d36d;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 700px) {
+
+  .intro-box {
+    padding: 20px;
+  }
+
+  .poem {
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .topHud {
+    height: 68px;
+    padding: 7px 10px;
+  }
+
+  .battleInfo {
+    font-size: 9px;
+    padding: 0 10px;
+  }
+
+  .controls {
+    height: 125px;
+    padding: 5px;
+  }
+
+  .actions button {
+    font-size: 10px;
+    padding: 9px 6px;
+  }
+
+  .movement button {
+    width: 35px;
+    height: 30px;
+  }
+
+  .instructions {
+    display: none;
+  }
+}
